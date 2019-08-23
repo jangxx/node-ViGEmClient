@@ -1,0 +1,32 @@
+{
+  "name": "vigemclient",
+  "version": "1.0.0",
+  "description": "Native bindings to the ViGem virtual gamepad driver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jangxx/node-ViGemClient.git"
+  },
+  "keywords": [
+    "vigem",
+    "xbox",
+    "ds4",
+    "native",
+    "driver",
+    "bindings"
+  ],
+  "author": "jangxx <jangxx@protonmail.com>",
+  "license": "MIT",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/jangxx/node-ViGemClient/issues"
+  },
+  "homepage": "https://github.com/jangxx/node-ViGemClient#readme",
+  "dependencies": {
+    "node-addon-api": "^1.7.1"
+  }
+}
