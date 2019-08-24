@@ -4,12 +4,11 @@
   "description": "Native bindings to the ViGem virtual gamepad driver",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp rebuild"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jangxx/node-ViGemClient.git"
+    "url": "git+https://github.com/jangxx/node-ViGEmClient.git"
   },
   "keywords": [
     "vigem",
@@ -23,10 +22,17 @@
   "license": "MIT",
   "gypfile": true,
   "bugs": {
-    "url": "https://github.com/jangxx/node-ViGemClient/issues"
+    "url": "https://github.com/jangxx/node-ViGEmClient/issues"
   },
-  "homepage": "https://github.com/jangxx/node-ViGemClient#readme",
+  "homepage": "https://github.com/jangxx/node-ViGEmClient#readme",
   "dependencies": {
     "node-addon-api": "^1.7.1"
-  }
+  },
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "ia32"
+  ]
 }
