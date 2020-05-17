@@ -61,13 +61,11 @@ Can only be called after a connection to the driver has been established.
 Both `X360Controller` and `DS4Controller` inherit from this class, but you can not instantiate it yourself.
 Most of the methods and properties are the same for both controller types and where they aren't, the differences will be made clear.
 
-_get_ **vendorID**  
-_set_ **vendorID**  
-Get or set the vendor ID of the device. Can only be accessed after `connect()` has been called.
+_get_ **vendorID**   
+Get the vendor ID of the device. Can only be accessed after `connect()` has been called.
 
 _get_ **productID**  
-_set_ **productID**  
-Get or set the product ID of the device. Can only be accessed after `connect()` has been called.
+Get the product ID of the device. Can only be accessed after `connect()` has been called.
 
 _get_ **index**  
 Get the internal index of the device. Can only be accessed after `connect()` has been called.
@@ -134,9 +132,14 @@ _get_ **userIndex** (`X360Controller` only)
 Get the user index of the virtual Xbox controller.
 This values corresponds to the player number displayed on the LEDs.
 
-**connect**()  
+**connect**(`opts = {}`)  
 Connect the controller to the driver.
 This is equivalent of plugging the controller into a USB port.
+The `opts` parameter is an object with the following optional properties:
+
+- `vendorID`: Specify a custom device vendor ID.
+- `productID`: Specify a custom device product ID.
+
 Returns `null` on success and an `Error` on error.
 
 **disconnect**()  

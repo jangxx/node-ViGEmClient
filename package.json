@@ -1,6 +1,6 @@
 {
   "name": "vigemclient",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Native bindings to the ViGem virtual gamepad driver",
   "main": "index.js",
   "scripts": {
