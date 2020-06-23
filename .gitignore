@@ -63,3 +63,4 @@ typings/
 .vscode
 
 build/
+*.dmp

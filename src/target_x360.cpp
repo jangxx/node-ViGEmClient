@@ -51,9 +51,9 @@ void wrap_vigem_target_x360_unregister_notification(const Napi::CallbackInfo& in
 	ViGemTargetWrap target_wrap = info[0].As<ViGemTargetWrap>();
 	PVIGEM_TARGET target = target_wrap.Data();
 
-	x360_notification_functions.erase(target);
-
 	vigem_target_x360_unregister_notification(target);
+
+	x360_notification_functions.erase(target);
 }
 
 Napi::Number wrap_vigem_target_x360_update(const Napi::CallbackInfo& info) {

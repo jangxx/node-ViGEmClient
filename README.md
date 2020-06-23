@@ -1,7 +1,7 @@
 # node-ViGEmClient
 Native Node.js bindings for the ViGEm virtual gamepad driver.
 
-Current SDK version: **1.16.28.0**
+Current SDK version: [commit 4657364](https://github.com/ViGEm/ViGEmClient/commit/465736429b8fe2b9d236b01ef0404f9bceb31106) (a few commits after v1.16.107)
 
 # Installation
 
