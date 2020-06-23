@@ -53,7 +53,7 @@ void wrap_vigem_target_x360_unregister_notification(const Napi::CallbackInfo& in
 
 	vigem_target_x360_unregister_notification(target);
 
-	x360_notification_functions.erase(target);
+	x360_notification_functions.erase(target); // delete after the unregistration so we can't have a call to a deleted function
 }
 
 Napi::Number wrap_vigem_target_x360_update(const Napi::CallbackInfo& info) {

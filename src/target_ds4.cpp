@@ -57,9 +57,9 @@ void wrap_vigem_target_ds4_unregister_notification(const Napi::CallbackInfo& inf
 	ViGemTargetWrap target_wrap = info[0].As<ViGemTargetWrap>();
 	PVIGEM_TARGET target = target_wrap.Data();
 
-	ds4_notification_functions.erase(target);
-
 	vigem_target_ds4_unregister_notification(target);
+
+	ds4_notification_functions.erase(target);
 }
 
 Napi::Number wrap_vigem_target_ds4_update(const Napi::CallbackInfo& info) {
