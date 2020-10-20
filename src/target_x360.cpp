@@ -42,7 +42,7 @@ Napi::Number wrap_vigem_target_x360_register_notification(const Napi::CallbackIn
 	Napi::Function callback = info[2].As<Napi::Function>();
 	x360_notification_functions[target] = Napi::ThreadSafeFunction::New(env, callback, "function", 0, 1);
 
-	VIGEM_ERROR err = vigem_target_x360_register_notification(client, target, &x360_notification_callback);
+	VIGEM_ERROR err = vigem_target_x360_register_notification(client, target, (PFN_VIGEM_X360_NOTIFICATION)&x360_notification_callback);
 
 	return Napi::Number::New(env, (double)err);
 }

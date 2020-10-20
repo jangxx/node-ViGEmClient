@@ -48,7 +48,7 @@ Napi::Number wrap_vigem_target_ds4_register_notification(const Napi::CallbackInf
 	Napi::Function callback = info[2].As<Napi::Function>();
 	ds4_notification_functions[target] = Napi::ThreadSafeFunction::New(env, callback, "function", 0, 1);
 
-	VIGEM_ERROR err = vigem_target_ds4_register_notification(client, target, &ds4_notification_callback);
+	VIGEM_ERROR err = vigem_target_ds4_register_notification(client, target, (PFN_VIGEM_DS4_NOTIFICATION)&ds4_notification_callback);
 
 	return Napi::Number::New(env, (double)err);
 }
