@@ -34,7 +34,7 @@ controller.axis.leftX.setValue(0.5); // move left stick 50% to the left
 controller.axis.leftY.setValue(-0.5); // move left stick 50% down
 controller.axis.leftTrigger.setValue(1); // press in left trigger all the way
 
-cnotroller.button.Y.setValue(true); // press Y button
+controller.button.Y.setValue(true); // press Y button
 ```
 
 More examples can be found in the _examples/_ directory.
