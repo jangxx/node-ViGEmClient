@@ -2,7 +2,7 @@
 
 std::unordered_map<PVIGEM_TARGET, Napi::ThreadSafeFunction> x360_notification_functions;
 
-void x360_notification_callback(PVIGEM_CLIENT Client, PVIGEM_TARGET Target, UCHAR LargeMotor, UCHAR SmallMotor, UCHAR LedNumber) {
+void x360_notification_callback(PVIGEM_CLIENT Client, PVIGEM_TARGET Target, UCHAR LargeMotor, UCHAR SmallMotor, UCHAR LedNumber, LPVOID userData) {
 	// store data on the heap so we can pass it to the callback function
 	NotificationData_x360* data = new NotificationData_x360{ LargeMotor, SmallMotor, LedNumber };
 
@@ -42,7 +42,7 @@ Napi::Number wrap_vigem_target_x360_register_notification(const Napi::CallbackIn
 	Napi::Function callback = info[2].As<Napi::Function>();
 	x360_notification_functions[target] = Napi::ThreadSafeFunction::New(env, callback, "function", 0, 1);
 
-	VIGEM_ERROR err = vigem_target_x360_register_notification(client, target, &x360_notification_callback);
+	VIGEM_ERROR err = vigem_target_x360_register_notification(client, target, &x360_notification_callback, NULL);
 
 	return Napi::Number::New(env, (double)err);
 }

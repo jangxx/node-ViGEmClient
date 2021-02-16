@@ -2,7 +2,6 @@
 
 std::unordered_map<VIGEM_TARGET_TYPE, std::string> type_map = {
 	{ Xbox360Wired, "Xbox360Wired" },
-	{ XboxOneWired, "XboxOneWired" },
 	{ DualShock4Wired, "DualShock4Wired" }
 };
 
