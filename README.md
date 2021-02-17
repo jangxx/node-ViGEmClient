@@ -1,7 +1,7 @@
 # node-ViGEmClient
 Native Node.js bindings for the ViGEm virtual gamepad driver.
 
-Current SDK version: [commit 4657364](https://github.com/ViGEm/ViGEmClient/commit/465736429b8fe2b9d236b01ef0404f9bceb31106) (a few commits after v1.16.107)
+Current SDK version: [commit f719a1d](https://github.com/ViGEm/ViGEmClient/commit/f719a1d9eb51969a685a9213d9db6dbb801404c1)
 
 # Installation
 
@@ -34,7 +34,7 @@ controller.axis.leftX.setValue(0.5); // move left stick 50% to the left
 controller.axis.leftY.setValue(-0.5); // move left stick 50% down
 controller.axis.leftTrigger.setValue(1); // press in left trigger all the way
 
-cnotroller.button.Y.setValue(true); // press Y button
+controller.button.Y.setValue(true); // press Y button
 ```
 
 More examples can be found in the _examples/_ directory.
@@ -52,9 +52,10 @@ Connect to the ViGEmBus driver. Returns `null` on success and an `Error` if ther
 Create a new `X360Controller` instance, with this client as its parent.
 Can only be called after a connection to the driver has been established.
 
-**createDS4Controller**()  
+**createDS4Controller**(`extended = false`)  
 Create a new `DS4Controller` instance, with this client as its parent.
 Can only be called after a connection to the driver has been established.
+If the `extended` parameter is set to `true`, a `DS4ControllerExtended` will be instantiated, which gives access to an experimental feature, allowing access to gyro, accelerometer, trackpad and more, but which is otherwise exactly the same as `DS4Controller`.
 
 ## ViGEmTarget
 
@@ -125,6 +126,7 @@ This property is the same for both controller types.
 - `rightTrigger`
 - `dpadHorz`
 - `dpadVert`
+- `batteryLevel` (only `DS4ControllerExtended`)
 
 All of these buttons are instances of `InputAxis` (documented below).
 
@@ -150,6 +152,20 @@ Returns `null` on success and an `Error` on error.
 **update**()  
 Submit updated button and axis values to the driver.
 If `updateMode` is set to "auto" (default), this method will be called automatically if a value is changed.
+
+**resetInputs**()  
+Resets all buttons and axes to their unpressed/neutral states.
+
+**addTouch**(touch) (`DS4ControllerExtended` only)  
+Add a `DS4TrackpadTouch` object to the current input report. You can add up to 3 of these before having to call `update()`, but it is usually advised to submit new touch events as soon as they are available.
+
+**setGyro**(pitch, yaw, roll) (`DS4ControllerExtended` only)  
+Sets the gyroscope orientation. Each value is in degrees and must be between -2000 and 2000.
+
+**setAccelerometer**(x, y, z) (`DS4ControllerExtended` only)  
+Set the current accelerometer measurement. Each value is in g-force and must be between -4 and 4.
+
+*Note about the gyroscope and the accelerometer: The values they produce are processed as a function of time, therefore each input report contains a timestamp so the receiving application can calculate the change over time. According to the documentation, this timestamp "usually increments" by 188 when the controller is updating every 1.25ms. Ergo, this library will measure the time between updates and increment the timestamp by the measured time multiplied by 188/1.25. I have no idea if this is correct way to do it, but I have no way to test it unfortunately. Just be warned that you need to call `update()` periodically (and probably with a high update rate) if you want the gyro and accelerometer values to make any sense/be usable.*
 
 ## InputButton
 
@@ -187,6 +203,22 @@ Higher values will be clamped to this value.
 **setValue**(value)  
 Set the value of this axis (between `minValue` and `maxValue`).
 The POV switch is also represented as an axis and it also takes continuous values, but since POV switches are digital, the values are cut-off at 0.5, so `>`0.5 means pressed and `<=` 0.5 means not pressed.
+
+## DS4TrackpadTouch
+
+This class represents a single multitouch event on the DS4 trackpad.
+You can import this class by requiring it from `"vigemclient/extra"`.
+
+**getFingersDown**()  
+Get the number of fingers that you have setup to touch the trackpad.
+Either 0, 1 or 2.
+
+**addFingerDown**(x, y)  
+Place another finger on the trackpad at location (x,y), with `0 <= x <= 1920` and `0 <= y <= 943`.
+If you try to add more than two fingers, the method will throw an error.
+
+**allFingersUp**()  
+Delete all previously added fingers from this event.
 
 # Events
 

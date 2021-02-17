@@ -151,7 +151,7 @@ Napi::Number wrap_vigem_target_ds4_update_ex(const Napi::CallbackInfo& info) {
 	report.Report.wAccelX = data.Get("wAccelX").As<Napi::Number>().Int32Value();
 	report.Report.wAccelY = data.Get("wAccelY").As<Napi::Number>().Int32Value();
 	report.Report.wAccelZ = data.Get("wAccelZ").As<Napi::Number>().Int32Value();
-	report.Report.bBatteryLvlSpecial = data.Get("bBatteryLvlSpecial").As<Napi::Number>().Uint32Value();
+	// report.Report.bBatteryLvlSpecial = data.Get("bBatteryLvlSpecial").As<Napi::Number>().Uint32Value();
 	report.Report.bTouchPacketsN = data.Get("bTouchPacketsN").As<Napi::Number>().Uint32Value();
 
 	if (report.Report.bTouchPacketsN > 3) {
@@ -160,14 +160,14 @@ Napi::Number wrap_vigem_target_ds4_update_ex(const Napi::CallbackInfo& info) {
 
 	Napi::Array touches = data.Get("touches").As<Napi::Array>();
 
-	if (report.Report.bTouchPacketsN >= 1) {
-		report.Report.sCurrentTouch = js_object_to_touch(touches.Get(0U).ToObject());
+	if (report.Report.bTouchPacketsN > 0) {
+		report.Report.sCurrentTouch = js_object_to_touch(touches.Get(0U).As<Napi::Object>());
 	}
-	if (report.Report.bTouchPacketsN >= 2) {
-		report.Report.sPreviousTouch[0] = js_object_to_touch(touches.Get(1U).ToObject());
+	if (report.Report.bTouchPacketsN > 1) {
+		report.Report.sPreviousTouch[0] = js_object_to_touch(touches.Get(1U).As<Napi::Object>());
 	}
-	if (report.Report.bTouchPacketsN >= 3) {
-		report.Report.sPreviousTouch[1] = js_object_to_touch(touches.Get(2U).ToObject());
+	if (report.Report.bTouchPacketsN > 2) {
+		report.Report.sPreviousTouch[1] = js_object_to_touch(touches.Get(2U).As<Napi::Object>());
 	}
 
 	VIGEM_ERROR err = vigem_target_ds4_update_ex(client, target, report);
