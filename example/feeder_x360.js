@@ -2,13 +2,15 @@ const ViGEmClient = require('..');
 
 let client = new ViGEmClient();
 
-if (client.connect() == null) {
+const connErr = client.connect()
+
+if (connErr == null) {
 	let controller = client.createX360Controller();
 
 	let err = controller.connect();
 
 	if (err) {
-		console.log(err.message);
+		console.log("Error while connecting to the virtual controller:", err.message);
 		process.exit(1);
 	}
 
@@ -48,4 +50,6 @@ if (client.connect() == null) {
 		t += 0.1;
 		btn = (btn + 1) % buttons.length;
 	}, 100);
+} else {
+	console.log("Error while connecting to the ViGEmBus driver:", connErr.message);
 }

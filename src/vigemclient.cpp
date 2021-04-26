@@ -17,7 +17,9 @@ Napi::Number wrap_vigem_connect(const Napi::CallbackInfo& info) {
 
 	VIGEM_ERROR err = vigem_connect(client);
 
-	return Napi::Number::New(env, (double)err);
+	uint32_t err_code = err; // cast to uint first
+
+	return Napi::Number::New(env, static_cast<double>(err_code));
 }
 
 void wrap_vigem_disconnect(const Napi::CallbackInfo& info) {
