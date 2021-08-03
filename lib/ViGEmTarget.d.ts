@@ -15,8 +15,8 @@ export class ViGEmTarget<B extends string, A extends string> extends EventEmitte
   get type(): string
   get attached(): boolean
   get updateMode(): 'auto' | 'manual'
-  get button(): { [key in B]: InputButton<this> }
-  get axis(): { [key in A]: InputAxis<this> }
+  get button(): { readonly [key in B]: InputButton<this> }
+  get axis(): { readonly [key in A]: InputAxis<this> }
 
   connect(opt?: IConnectOptions): null | Error
   disconnect(): null | Error
