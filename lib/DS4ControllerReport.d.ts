@@ -1,0 +1,1 @@
+export class DS4ControllerReport extends InputReport {}
