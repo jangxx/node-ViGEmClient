@@ -1,2 +1,2 @@
-import { ViGEmClient } from "./lib/ViGEmClient"
+import { ViGEmClient } from "./lib/ViGEmClient";
 export = ViGEmClient

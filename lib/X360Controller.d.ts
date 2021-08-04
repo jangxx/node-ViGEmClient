@@ -5,5 +5,5 @@ type TX360Buttons = keyof Omit<typeof XUSB_BUTTON, 'DPAD_UP' | 'DPAD_DOWN' | 'DP
 type TX360Axis = 'leftX' | 'leftY' | 'rightX' | 'rightY' | 'leftTrigger' | 'rightTrigger' | 'dpadHorz' | 'dpadVert'
 
 export class X360Controller extends ViGEmTarget<TX360Buttons, TX360Axis> {
-  get userIndex(): number
+	get userIndex(): number
 }

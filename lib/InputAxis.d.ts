@@ -1,4 +1,4 @@
-import {ViGEmTarget} from "./ViGEmTarget";
+import { ViGEmTarget } from "./ViGEmTarget";
 import { ISpec } from "./common";
 
 export class InputAxis<T extends ViGEmTarget<any, any>> {
