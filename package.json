@@ -34,5 +34,8 @@
   "cpu": [
     "x64",
     "ia32"
-  ]
+  ],
+  "devDependencies": {
+    "@types/node": "^16.4.10"
+  }
 }
