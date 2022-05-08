@@ -200,9 +200,16 @@ _get_ **maxValue**
 Get the highest value this axis can be set to.
 Higher values will be clamped to this value.
 
+_get_ **neutralValue**  
+The the "middle" of the axis, i.e. the position at which it is considered "neutral".
+As of right now, all controllers have this value set to `0`.
+
 **setValue**(value)  
 Set the value of this axis (between `minValue` and `maxValue`).
 The POV switch is also represented as an axis and it also takes continuous values, but since POV switches are digital, the values are cut-off at 0.5, so `>`0.5 means pressed and `<=` 0.5 means not pressed.
+
+**reset**()  
+Resets the axis to its neutral position.
 
 ## DS4TrackpadTouch
 

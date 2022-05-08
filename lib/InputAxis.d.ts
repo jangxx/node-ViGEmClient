@@ -12,6 +12,9 @@ export class InputAxis<T extends ViGEmTarget<any, any>> {
 
 	get minValue(): number
 	get maxValue(): number
+	get neutralValue(): number
 
 	setValue(value: number): null | Error
+
+	reset(): null | Error
 }

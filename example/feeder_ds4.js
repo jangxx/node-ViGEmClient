@@ -25,7 +25,17 @@ if (client.connect() == null) {
 
 	let t = 0;
 
-	let buttons = Object.keys(controller.button);
+	const buttons = [
+		"TRIGGER_RIGHT",
+    	"TRIGGER_LEFT",
+    	"SHOULDER_RIGHT",
+    	"SHOULDER_LEFT",
+    	"TRIANGLE",
+    	"CIRCLE",
+    	"CROSS",
+    	"SQUARE",
+	];
+
 	let btn = 0;
 
 	setInterval(() => {
