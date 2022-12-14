@@ -190,15 +190,25 @@ _get_ **name**
 Get the internal name of this axis.
 
 _get_ **value**  
-Get the currently set value of the axis.
+Get the currently set value of the axis (between `minValue` and `maxValue`).
 
-_get_ **minValue**
+_get_ **valueRaw**  
+Get the current raw (internal) value of this axis (between `minValueRaw` and `maxValueRaw`).
+This is the value that was sent to the driver.
+
+_get_ **minValue**  
 Get the lowest value this axis can be set to.
 Lower values will be clamped to this value.
 
 _get_ **maxValue**  
 Get the highest value this axis can be set to.
 Higher values will be clamped to this value.
+
+_get_ **minValueRaw**  
+Get the lowest value this axis can take on (when accessing `.valueRaw`).
+
+_get_ **maxValueRaw**  
+Get the highest value this axis can take on (when accessing `.valueRaw`).
 
 _get_ **neutralValue**  
 The the "middle" of the axis, i.e. the position at which it is considered "neutral".
