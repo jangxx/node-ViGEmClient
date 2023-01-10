@@ -67,21 +67,21 @@ export const VIGEM_ERRORS: {
 }
 
 export class InputReport {
-	updateButton(name: string, value: boolean): void
-	updateAxis(name: string, value: number): void
+	updateButton(name: string, value: boolean): void;
+	updateAxis(name: string, value: number): void;
 
-	getButtonValue(name: string): void
-	getAxisValue(name: string): void
+	getButtonValue(name: string): boolean;
+	getAxisValue(name: string): number;
 
-	reset(): void
+	reset(): void;
 }
 
-export function clamp(value: number, min: number, max: number): Number
-export function rangeMap(value: number, spec: ISpec): number
+export function clamp(value: number, min: number, max: number): Number;
+export function rangeMap(value: number, spec: ISpec): number;
 
 export interface ISpec {
-	minIn: number
-	maxIn: number
-	minOut: number
-	maxOut: number
+	minIn: number;
+	maxIn: number;
+	minOut: number;
+	maxOut: number;
 }
