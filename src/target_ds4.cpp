@@ -26,7 +26,7 @@ void ds4_notification_callback(PVIGEM_CLIENT Client, PVIGEM_TARGET Target, UCHAR
 	});
 }
 
-DS4_TOUCH js_object_to_touch(Napi::Object& obj) {
+DS4_TOUCH js_object_to_touch(Napi::Object obj) {
 	DS4_TOUCH touch = { 0 };
 
 	touch.bPacketCounter = obj.Get("packetCounter").As<Napi::Number>().Uint32Value() & 0xFF;
