@@ -161,13 +161,16 @@ Napi::Number wrap_vigem_target_ds4_update_ex(const Napi::CallbackInfo& info) {
 	Napi::Array touches = data.Get("touches").As<Napi::Array>();
 
 	if (report.Report.bTouchPacketsN > 0) {
-		report.Report.sCurrentTouch = js_object_to_touch(touches.Get(0U).As<Napi::Object>());
+		Napi::Object touch = touches.Get(0U).As<Napi::Object>();
+		report.Report.sCurrentTouch = js_object_to_touch(touch);
 	}
 	if (report.Report.bTouchPacketsN > 1) {
-		report.Report.sPreviousTouch[0] = js_object_to_touch(touches.Get(1U).As<Napi::Object>());
+		Napi::Object touch = touches.Get(1U).As<Napi::Object>();
+		report.Report.sPreviousTouch[0] = js_object_to_touch(touch);
 	}
 	if (report.Report.bTouchPacketsN > 2) {
-		report.Report.sPreviousTouch[1] = js_object_to_touch(touches.Get(2U).As<Napi::Object>());
+		Napi::Object touch = touches.Get(2U).As<Napi::Object>();
+		report.Report.sPreviousTouch[1] = js_object_to_touch(touch);
 	}
 
 	VIGEM_ERROR err = vigem_target_ds4_update_ex(client, target, report);
